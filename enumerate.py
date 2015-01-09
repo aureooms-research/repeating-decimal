@@ -2,14 +2,14 @@
 
 from primes import phi , ufactor
 
-from cycles import cycle , nonrepeatingpart
+from reciprocals import repetend , transient
 
 
 def main ( b = 10 ) :
 	"""
 		For all d > 0, if 1/d
-			has either a cycle length of 0
-			or a cycle length that divides phi( d )
+			has either a repetend length of 0
+			or a repetend length that divides phi( d )
 
 		b is the base, works with any base that can represent rationals
 		i.e. any base greater or equal to 2
@@ -24,14 +24,14 @@ def main ( b = 10 ) :
 	while True :
 
 		# skip the numbers made only of prime factors of b
-		# they are the only numbers that can have no cycle
+		# they are the only numbers that can have no repetend
 
-		n , hascycle = nonrepeatingpart( d , bfactor )
+		n , hasrepetend = transient( d , bfactor )
 
-		if hascycle :
+		if hasrepetend :
 
-			# compute phi( d ) and cycle( n , d , b )
-			p , c = phi( d ) , cycle( n , d , b )
+			# compute phi( d ) and repetend( n , d , b )
+			p , c = phi( d ) , repetend( n , d , b )
 
 			# check if condition holds
 			v = p % c == 0
